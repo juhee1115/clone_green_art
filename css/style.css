@@ -1,0 +1,432 @@
+@charset "utf-8";
+
+@import url("https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@100;300;500&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  outline: 0;
+  color: inherit;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #222;
+  font-family: "Alegreya Sans SC", sans-serif;
+  color: #fff;
+}
+
+/* =========================
+   전체 레이아웃
+========================= */
+
+main {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  background: #222;
+}
+
+/* =========================
+   header
+========================= */
+
+main header {
+  width: 20%;
+  height: 100%;
+  padding: 10vh 5vw;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+main header h1 {
+  color: #fff;
+}
+
+main header h1 i {
+  font-size: 5vw;
+  margin-bottom: 15px;
+}
+
+main header h1 span {
+  display: block;
+  font-size: 1.2vw;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+main header address {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #888;
+  font-style: normal;
+}
+
+/* =========================
+   nav
+========================= */
+
+main nav {
+  position: fixed;
+  top: 7vh;
+  right: 5vw;
+  z-index: 10;
+}
+
+main nav ul {
+  display: flex;
+  gap: 30px;
+}
+
+main nav ul li {
+  cursor: pointer;
+}
+
+main nav ul li i {
+  font-size: 20px;
+  color: #bbb;
+  transition: 0.3s;
+}
+
+main nav ul li:hover i {
+  color: #fff;
+  transform: scale(1.2);
+}
+
+/* =========================
+   section
+========================= */
+
+main section {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+/* =========================
+   article
+========================= */
+
+main section article {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  cursor: pointer;
+  transition: flex 0.8s;
+  background: #111;
+}
+
+main section article:hover {
+  flex: 1.5;
+}
+
+/* 어두운 오버레이 */
+
+main section article::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85),
+    rgba(0, 0, 0, 0.2)
+  );
+
+  transition: 0.5s;
+  z-index: 1;
+}
+
+main section article:hover::after {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.05)
+  );
+}
+
+/* 흰색 패널 효과 */
+
+main section article::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -220px;
+
+  width: 80%;
+  height: 100%;
+
+  background: rgba(255, 255, 255, 0.08);
+  transform: skewX(-10deg);
+
+  opacity: 0;
+  transition: 0.8s;
+
+  z-index: 2;
+}
+
+main section article:hover::before {
+  left: -60px;
+  opacity: 1;
+}
+
+/* =========================
+   inner
+========================= */
+
+main section article .inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* =========================
+   text
+========================= */
+
+main section article .txt {
+  position: absolute;
+  left: 50px;
+  bottom: 12vh;
+
+  width: 70%;
+  z-index: 3;
+
+  transform: translateY(30px);
+  opacity: 0.7;
+
+  transition: 0.8s;
+}
+
+main section article:hover .txt {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+main section article .txt h2 {
+  font-size: 5vw;
+  font-weight: 300;
+  margin-bottom: 20px;
+  transition: 0.5s;
+}
+
+main section article:hover .txt h2 {
+  transform: translateY(-10px);
+}
+
+main section article .txt h2::after {
+  content: "";
+  display: block;
+
+  width: 40px;
+  height: 2px;
+
+  margin-top: 20px;
+
+  background: #777;
+  transition: 0.5s;
+}
+
+main section article:hover .txt h2::after {
+  width: 120px;
+  background: orange;
+}
+
+main section article .txt p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #ccc;
+  opacity: 0.8;
+  transition: 0.5s;
+}
+
+main section article:hover .txt p {
+  color: #fff;
+  opacity: 1;
+}
+
+/* =========================
+   video
+========================= */
+
+main section article figure {
+  width: 100%;
+  height: 100%;
+}
+
+main section article figure video {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  filter: grayscale(20%);
+  transform: scale(1.05);
+
+  transition: 0.8s;
+}
+
+main section article:hover figure video {
+  transform: scale(1.15);
+  filter: grayscale(0%);
+}
+
+/* =========================
+   aside
+========================= */
+
+main aside {
+  position: fixed;
+  top: 0;
+  left: -100%;
+
+  width: 100%;
+  height: 100vh;
+
+  background: #111;
+
+  padding: 10vw;
+
+  z-index: 20;
+  transition: 0.8s;
+}
+
+main aside.on {
+  left: 0;
+}
+
+main aside .txt h1 {
+  font-size: 5vw;
+  margin-bottom: 20px;
+}
+
+main aside .txt p {
+  width: 60%;
+  font-size: 18px;
+  line-height: 1.8;
+  color: #aaa;
+}
+
+main aside span {
+  display: inline-block;
+  margin-top: 50px;
+
+  border: 1px solid #fff;
+  padding: 12px 30px;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+main aside span:hover {
+  background: #fff;
+  color: #111;
+}
+
+/* =========================
+   responsive
+========================= */
+
+@media screen and (max-width: 768px) {
+  body {
+    overflow-y: auto;
+  }
+
+  main {
+    flex-direction: column;
+    height: auto;
+  }
+
+  /* header */
+
+  main header {
+    width: 100%;
+    height: 100px;
+
+    padding: 20px;
+
+    flex-direction: row;
+    align-items: center;
+  }
+
+  main header h1 i {
+    font-size: 40px;
+  }
+
+  main header h1 span {
+    font-size: 18px;
+  }
+
+  main header address {
+    display: none;
+  }
+
+  /* nav */
+
+  main nav {
+    top: 35px;
+    right: 20px;
+  }
+
+  /* section */
+
+  main section {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  main section article {
+    height: 25vh;
+  }
+
+  main section article:hover {
+    flex: 1;
+  }
+
+  main section article .txt {
+    left: 30px;
+    bottom: 40px;
+  }
+
+  main section article .txt h2 {
+    font-size: 40px;
+  }
+
+  main section article .txt p {
+    font-size: 13px;
+  }
+
+  /* aside */
+
+  main aside {
+    padding: 40px;
+  }
+
+  main aside .txt h1 {
+    font-size: 40px;
+  }
+
+  main aside .txt p {
+    width: 100%;
+    font-size: 15px;
+  }
+}
